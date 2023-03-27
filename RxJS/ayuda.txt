@@ -1,0 +1,103 @@
+npm i rxjs
+
+
+npm run dev
+
+///////////////////////////////////////
+Fundamentos sobre RxJS
+La programación reactiva se centra en flujos de información que ocurren en un determinado orden. Estos flujos de información pueden venir en forma de de eventos en la interfaz del usuario, arreglos predefinidos o peticiones de red HTTP.
+
+ReactiveX es una plataforma de múltiples herramientas para operar secuencias de datos (basada en programación reactiva). Tiene implementaciones en varios lenguajes. Su implementación en JavaScript es RxJS.
+
+Patrón RxJS
+El Observable se puede comunicar a través de los métodos: next, complete, y error. Y el Observador puede interactuar con el Observable a través de los métodos: subscribe y unsubscribe.
+
+El Observable emite información con next, completa la información con complete, e informa de un error a través de error. El Observador puede suscribirse a un observable a través de subscribe y desuscribirse a través de unsubscribe.
+
+Una vez un Observador se ha suscrito a un Observable, el Observador puede recibir valores de él.
+
+Por definición un Observable no puede ser completado y luego generar un error, o generar un error y luego ser completado. También, por definición, un Observable no puede emitir más valores después de ser completado o después de generar un error.
+
+Esta interacción es definida a través el Observable Contract (más información aquí).
+
+Diagrama de canicas
+En ReactiveX contamos con diagramas de canicas (Marble Diagrams), que nos permiten visualizar cómo se comportan los valores que fluyen a través de uno o más observables, y cómo interactúan con los operadores.
+
+Son muy importantes porque nos ayudan a comprender nuevos métodos en RxJS.
+
+Los siguientes son los elementos gráficos reconocibles de los diagramas de canicas:
+
+Elementos gráficos de un diagrama de canicas
+Fundamentos de Operadores
+Los operadores son funciones que dentro de RxJS se dividen en dos tipos.
+
+Los operadores creacionales pueden generar observables.
+Los operadores pipeables pueden transformar valores de observables.
+Ejemplos de Operadores
+A continuación tienes una descripción breve de cómo funcionan muchos de ellos:
+
+fromEvent es un operador que genera un observable que escucha eventos en los elementos en el DOM.
+
+Subject es un operador que nos permite insertar valores desde afuera del observable.
+
+Subject también nos permite enviar los mismos valores de una fuente a todos los observadores.
+
+from es un operador que genera un observable a través de un arreglo.
+
+of es un operador que genera un observable a través de sus argumentos.
+
+asyncScheduler como argumento envía los valores de un observable al event loop queue.
+
+interval es un operador que genera un observable que emite valores numéricos por un intervalo de tiempo en milisegundos.
+
+timer es un operador que genera un valor de un observable con un retraso especificado en milisegundos.
+
+map permite iterar sobre cada uno de los valores emitidos por un observable.
+
+filter permite filtrar valores emitidos por el observable a través de una condición. Los valores que cumplen la condición son emitidos.
+
+reduce permite utilizar una función acumuladora para realizar operaciones matemáticas. Por ejemplo, la suma de todos los valores emitidos.
+
+Operadores de distinción
+distinct restringe valores repetidos a lo largo de toda la secuencia.
+
+discinctUntilChanged restringe valores repetidos en secuencia.
+
+distinctUntilKeyChanged restringe valores repetidos en secuencia a través del valor (key) de una propiedad.
+
+Operadores de tiempo
+throttleTime envía el valor emitido por el observable de entrada, luego ignora los valores enviados durante X segundos. Finalizados los X segundos, se repite el ciclo del inicio.
+
+debounceTime espera a que haya pasado X segundos para poder enviar un valor. Si un nuevo valor es enviado dentro de esta cantidad de segundos el contador se reincia, por el contrato si ningún nuevo valor es enviado en esa cantidad de segundos, el valor es enviado.
+
+auditTime espera a que haya pasado X segundos una vez ha sido enviado un valor. Cuando acaban los X segundos, se envía el último valor.
+
+sampleTime emite valores de un observable de entrada cada X segundos.
+
+Operadores de fusión
+merge fusiona los valores de uno o más observables entregando sólo un observable.
+
+mergeAll toma todos los valores que emitidos por obserables internos que son generados por un sólo observable de orden superior.
+
+mergeMap retorna un Observable que es producto de realizar un mapeo entre un primer observable, y un segundo observable. Todos los valores conseguidos en este produco son emitidos en un observable.
+
+takeUntil permite que un observable pueda completarse con la emisión de valores de otro observable.
+
+Operadores de peticiones HTTP
+ajax nos permite utilizar AJAX dentro de ReactiveX para ejecutar peticiones HTTP.
+
+fromFetch nos permite utilizar Fetch API dentro de ReactiveX para ejecutar peticiones HTTP.
+
+Otros operadores
+pluck te permite acceder a propiedades dentro de un objeto.
+
+startWith permite insertar un valor antes del envío de valores de un observable.
+
+endWith permite insertar un valor antes de que el observable de entrada se haya completado.
+
+¡Eso es todo!
+Esta lectura fue un resumen de todo lo que hemos aprendido en este curso.
+
+Sin embargo la librería es gigantesca, tiene y un futuro prometedor dentro del desarrollo de software.
+
+Así que recuerda mantenerte al tanto sobre las siguientes versiones de RxJS y cómo puedes aprovechar las herramientas que la misma documentación nos ofrece (puedes revisar la clase sobre Documentación de RxJS y la clase sobre Recomendaciones y futuro de RxJS).

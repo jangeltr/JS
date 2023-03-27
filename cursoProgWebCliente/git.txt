@@ -1,0 +1,103 @@
+sudo apt install git
+
+0. Ver la lista de comandos de Git
+	git
+
+1. Inicializar un proyecto en working area
+	git init
+
+2. Configurar Git 
+	//ver la lista de comandos de configuracion
+	git config
+
+	//ver la configuracion actual
+	git config --list
+
+	//configurar
+	git config --global user.name “usuario”
+	git config --global user.email “usuario@hotmail.com”
+	git config --global color.ui true
+	  
+3. Agregar al staging area todos los archivos del proyecto
+	git add .
+	git rm --cached archivo.ext  //para quitar un archivo del staging area dejandolo en el 
+					working area
+
+4. Para ver el estado de mi proyecto y ver cuales archivos han sufrido cambios
+	git status
+	git diff archivo     	//Para ver cambios entre working area y staging area
+	git show archivo		//Muestra los cambios que sufrio en el ultimo commit
+	git log archivo			//lista los commits en los que ha sufrido cambios
+	//cuando hay mucha info       q para salir
+
+5. Cuando tenemos una version terminada y la vamos a subir al repository
+	git commit -m “Nombre para identificar la version o cambios realizados”
+	git commit --amend 	//cuando algo nos falto en el ultimo commit y se lo queremos agregar
+						//primero se hace el cambio que falto y luego se hace el add y luego el commit con amend
+
+6. Para ver el historial de commits
+	git log
+	git log --stat  //Muestra los cambios entre commit y commit
+	//cuando hay mucha info       q para salir
+
+7. Para ver los cambios que se han realizado a un archivo despues del ultimo commit
+	git show archivo.txt
+
+8. Para ver los cambios entre un commit y otro
+	git diff codigoCommitMasViejo codigoCommitMasNuevo
+	
+
+***************************************************************************************************************
+
+
+
+Para ver el estatus del proyecto y ver en que rama estoy
+	
+	git status
+
+Para ver que ramas del proyecto hay y en que rama estoy
+
+	git branch
+	git show-branch –all  		//muestra las ramas con mas informacion
+
+Para ver las ramas remotas, las del origin
+	git branch -r
+
+Crear una nueva rama del proyecto
+
+	git branch nuevaRama
+
+Cambiarse a otra rama
+
+	git checkout OtraRama
+
+	//Si en el proyecto local tengo varias ramas y me cambio de rama sin hacer commit se pierden los cambios hechos a los archivos despues del ultimo commit de esa rama.
+
+Renombrar una rama, estando la rama que se desea renombrar
+
+	git branch -m new-name
+
+Eliminar una rama
+
+	git branch -D branch_name
+
+Fucionar 2 ramas
+
+	//estando en la rama principal
+
+	git merge rama2 -m “mensaje porque se crea un nuevo commit en la rama principal”
+
+
+DESHACER CAMBIOS
+Desahacer los cambios en todos los archivos volviendo al commit especificado en el codigo
+	//deja el staging area intacto
+	git reset  codigoCommit  --soft
+	//regresa al commit especificado quitando tambien todo del staging area
+	git reset  codigoCommit  --hard
+
+Deshacer cambios en algun archivo devolviendolo a un commit especifico
+	git checkout codigoCommitAntiguo archivo.ext	
+	//sin modificar el staging area
+	//Deja todos los commits intactos, asi que podemos ver el archivo y luego traer otra vez el
+ 	//archivo del ultimo commit
+	git checkout codigoCommitMasNuevo archivo.ext
