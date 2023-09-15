@@ -1,16 +1,20 @@
-
 //spread operator
 let person = { name: "Alexa", age: 24 };
 let country = "COL"
 
-let data = { ...person, country };
-console.log(data);
+let data = { ...person, country };  // spread separa, divide, descompone el objeto person en sus propiedades
+console.log(data);  //{name: 'Alexa', age: 24, country: 'COL'}
 
-//rest parameters
-function sum(num, ...values) {
-    console.log(values);
-    console.log(num + values[0]);
-    return num + values[0];
+
+//rest operator
+const numbers = [1, 2, 3, 4, 5];
+const [first, second, ...rest] = numbers;   //rest junta, compone, agrupa el RESTO de los elementos en un array
+console.log(first, second, rest); //1 2 [3, 4, 5]
+
+function sum(num, ...restValues) {
+    console.log(restValues);
+    console.log(num + restValues[0]);
+    return num + restValues[0];
 }
 
 sum(1, 1, 2, 3)
